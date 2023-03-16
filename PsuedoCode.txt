@@ -1,0 +1,43 @@
+Initialise slam, map and robot variables
+	Need to use the navigation stack
+	Keep a saved list of the colours and their status
+
+
+
+Look around for the nearest coloured pole,
+	Create 4 masks, strict red and yellow, relaxed on the green and blue
+		Turn around
+		Check the list of colours and status
+			Create masks of image (exclude any that have been excluded)
+		Bitwise AND them together
+		once located create contours
+		move towards largest
+
+
+
+if found mark it on map
+	have a set distance away (0.5-1m)
+	if blocked etc attemp to explore towards it 
+	once there		
+		Mark its location on the map
+		Mark it as excluded
+else
+	explore unexplored areas,
+		Look at spanning trees etc
+repeat until all 4 are excluded (found)
+
+
+
+once all 4 of the poles have been found calculate the fastest route using a*
+	navigation stack
+
+
+
+follow the route while actively performing slam to avoid obstacles
+	check that the poles are in the same place
+	if not then mark them as finding
+		repeat steps to create a route
+
+
+
+Needs to perform slam and obstacle avoidance throughout
